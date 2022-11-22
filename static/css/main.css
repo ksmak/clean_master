@@ -34,12 +34,79 @@ header {
     flex-direction: column;
     justify-content: flex-start;
 }
-.calculate__section {
+.order__section {
     height: 100vh;
-    background-color: aqua;
+    display: flex;
+    flex-direction: column;
 }
-footer {
-    background-color: white;    
+.order__section h1 {
+    color: green;
+    align-self: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 3em;
+}
+.order__section form {
+    align-self: center;
+    width: 60%;
+    border: 1.5px solid green;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2%;
+}
+.form__row {
+    padding: 0 0 2% 0;
+}
+.form__row input {
+    font-size: 1.5em;
+    border-radius: .2em;
+    padding: 1%;
+}
+.form__row input[type='text'] {
+    width: 75%;
+}
+datalist {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+option {
+    padding: 0;
+} 
+.form__row input[type='range'] {
+    width: 100%;
+}
+
+/* .form__row input[type='range'] {
+    -webkit-appearance: none;
+    width: 100%;
+}
+.form__row input[type=range]::-webkit-slider-runnable-track {
+    border-radius: 10px;
+    height: 10px;
+    border: 1px solid #000;
+    background-color: #ccc;
+}
+.form__row input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #000;
+    border: 3px solid #0b6b00;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: -5px;
+} */
+.form__row label {
+    font-size: 1.2em;
+    margin-right: 2%;
+}
+.form__row span {
+    font-size: 1.2em;
+    font-weight: 600;
 }
 .button {
     text-decoration: none;
