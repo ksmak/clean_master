@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Master</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+</head>
+<body>
+    <div class="content">
+        <header>
+            <div class="logo__box">
+                <img src="{{url_for('static', filename='img/logo.png')}}" alt="CLEAN MASTER">
+            </div>
+            <div class="contact__box">
+                {% for i in contacts %}
+                <div class="contact__item">{{i}}</div>
+                {% endfor %}
+            </div>
+            <nav class="menu__box">
+                <ul>
+                    {% for m in menu %}
+                    <li class="menu__item"><a href="#">{{m['name']}}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="main__section">
+                <div class="panel">
+                    <img src="{{url_for('static', filename='img/logo-main.png')}}" alt="CLEAN MASTER">
+                    <h2>Cделаем всю пыльную работу за вас!</h2>
+                    <p>
+                        Cервис для тех, кто хочет жить в чистоте и не тратить время на уборку. 
+                        Пока вы занимаетесь чем-то важным мы наведем порядок в квартире, частном доме или офисе, 
+                        почистим мягкую мебель и помоем окна.вис для тех, кто хочет жить в чистоте и не тратить время на уборку. 
+                    </p>
+                </div>
+                <div class="button__box">
+                    <a class="button" href="#calculate">Посчитать стоимость</a> 
+                    <a class="button" href="{{whatsapp}}">WhatsApp</a>
+                </div>
+            </section>
+            <section class="quality__section">
+
+            </section>
+            <section class="services__section">
+
+            </section>
+            <section class="calculate__section" id="calculate">
+                <h1>Посчитать стоимость</h1>
+            </section>
+        </main>
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>
