@@ -57,15 +57,27 @@ header {
     padding: 2%;
 }
 .form__row {
-    padding: 0 0 2% 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
-.form__row input {
+.form__col {
+    width: 100%;
+    padding: 0 0 2% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.form__col input {
     font-size: 1.5em;
     border-radius: .2em;
     padding: 1%;
 }
-.form__row input[type='text'] {
-    width: 75%;
+.form__col input[type='text'], .form__col input[type='tel'] {
+    width: 60%;
+}
+.form__col input[type='submit'] {
+    align-self: center;
 }
 datalist {
     display: flex;
@@ -79,27 +91,6 @@ option {
 .form__row input[type='range'] {
     width: 100%;
 }
-
-/* .form__row input[type='range'] {
-    -webkit-appearance: none;
-    width: 100%;
-}
-.form__row input[type=range]::-webkit-slider-runnable-track {
-    border-radius: 10px;
-    height: 10px;
-    border: 1px solid #000;
-    background-color: #ccc;
-}
-.form__row input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background-color: #000;
-    border: 3px solid #0b6b00;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: -5px;
-} */
 .form__row label {
     font-size: 1.2em;
     margin-right: 2%;
@@ -201,7 +192,14 @@ ul {
 .menu__item li:hover {
     transform: scale(1.2);
 }
-/* for-phone-only */
+
+#cost {
+    color: brown;
+    font-weight: 700;
+    font-size: 2em;
+    margin-left: 2%;
+}
+
 @media (max-width: 620px) {
     .main__section {
         background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(../img/fonsmall.jpg);
@@ -221,6 +219,22 @@ ul {
     .menu__item a {
         font-size: .9em;
     }
+    .order__section h1 {
+        font-size: 2em;
+    }
+    .order__section form input[type='text'], .order__section form input[type='tel'] {
+        font-size: 1.2em;
+        width: 100%;
+    }
+    .order__section form {
+        width: 100%;
+    }
+    .form__col label, form__col span  {
+        font-size: 1em;
+    }
+    #cost {
+        font-size: 2em;
+    }
 }
 @media (min-width: 621px) and (max-width: 832px) {
     .panel h2 {
@@ -229,6 +243,9 @@ ul {
     .panel p {
         font-size: 1em;
     }
+    .order__section form {
+        width: 100%;
+    }
 }
 @media (min-width: 833px) and (max-width: 973px) {
     .panel h2 {
@@ -236,6 +253,9 @@ ul {
     }
     .panel p {
         font-size: 1em;
+    }
+    .order__section form {
+        width: 100%;
     }
 }
 @media screen and (min-width: 974px) and (max-width: 1307px) { 

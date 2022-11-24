@@ -44,133 +44,117 @@
             </section>
             <section class="order__section" id="order">
                 <h1>Заказать уборку</h1>
-                <form action="/add_order" method="post">
+                <form action="/send_order" method="post">
                     <div class="form__row">
-                        <input type="text" name="username" placeholder="Ваше имя">
-                    </div>
-                    <div class="form__row">
-                        <input type="text" name="phone" placeholder="Ваш номер телефона">
-                    </div>
-                    <div class="form__row">
-                        <span>Тип уборки:</span>
-                    </div>
-                    <div class="form__row">
-                        <div>
-                            <input type="radio" name="clean_type" id="clean_type1" value="spring_cleaning">
-                            <label for="clean_type1">Генеральная уборка</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="clean_type" id="clean_type2" value="wet_cleaning">
-                            <label for="clean_type2">Влажная уборка</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="clean_type" id="clean_type3" value="afterepair_cleaning">
-                            <label for="clean_type3">Уборка после ремонта</label>
+                        <div class="form__col">
+                            <input type="text" name="username" placeholder="Ваше имя" required>
                         </div>
                     </div>
                     <div class="form__row">
-                        <span>Тип помещения:</span>
-                    </div>
-                    <div class="form__row">
-                        <div>
-                            <input type="radio" name="room_type" id="room_type1" value="living_room">
-                            <label for="room_type1">Жилое помещение</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="room_type" id="room_type2" value="private_house">
-                            <label for="room_type2">Частный дом</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="room_type" id="room_type3" value="production_room">
-                            <label for="room_type3">Производственное помещение</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="room_type" id="room_type4" value="site_area">
-                            <label for="room_type4">Территория участка</label>
+                        <div class="form__col">
+                            <input class="mask" placeholder="+7 (___) ___-__-__" type="tel" value="+7 (___) ___-__-__" required>
                         </div>
                     </div>
                     <div class="form__row">
-                        <span>Общая площадь помещения (кв.м.):</span>
-                    </div>
-                    <div class="form__row">
-                        <input id="room_size" type="range" min="0" max="500" value="0" list="tickmarks">    
-                        <datalist id="tickmarks">
-                            <option value="0" label="0"></option>
-                            <option value="50" label="50"></option>
-                            <option value="100" label="100"></option>
-                            <option value="150" label="150"></option>
-                            <option value="200" label="200"></option>
-                            <option value="250" label="250"></option>
-                            <option value="300" label="300"></option>
-                            <option value="350" label="350"></option>
-                            <option value="400" label="400"></option>
-                            <option value="450" label="450"></option>
-                            <option value="500" label="500"></option>
-                        </datalist>
-                        <div class="current-value"><span id="room_size_value">10</span></div>
-                    </div>
-                    <div class="form__row">
-                        <span>Дополнительные услуги:</span>
-                    </div>
-                    <div class="form__row">
-                        <div>
-                            <input type="checkbox" name="carpet_cleanning" id="carpet_cleanning">
-                            <label for="carpet_cleanning">Хим.чистка ковровых покрытий (кв.м)</label>
-                            <input id="carpet_cleanning_size" type="range" min="0" max="50" value="0" list="carpet_cleanning_marks">    
-                            <datalist id="carpet_cleanning_marks">
-                                <option value="0" label="0"></option>
-                                <option value="10" label="10"></option>
-                                <option value="20" label="20"></option>
-                                <option value="30" label="30"></option>
-                                <option value="40" label="40"></option>
-                                <option value="50" label="50"></option>
-                            </datalist>
+                        <div class="form__col">
+                            <span>Тип помещения:</span>
+                            {% for c in clean_list %}
+                                {% if c['group'] == 'room_type' %}
+                                <div>
+                                    <input type="radio" name="room_type" id="{{c['name']}}" value="{{c['name']}}">
+                                    <label for="{{c['name']}}">{{c['title']}}</label>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
-                        <div>
-                            <input type="checkbox" name="furniture_cleaning" id="furniture_cleaning">
-                            <label for="furniture_cleaning">Хим.чиска мебели (посадочное место)</label>
-                            <input id="furniture_cleanning_size" type="range" min="0" max="30" value="0" list="furniture_cleanning_marks">    
-                            <datalist id="furniture_cleanning_marks">
-                                <option value="0" label="0"></option>
-                                <option value="5" label="5"></option>
-                                <option value="10" label="10"></option>
-                                <option value="15" label="15"></option>
-                                <option value="20" label="20"></option>
-                                <option value="25" label="25"></option>
-                                <option value="30" label="30"></option>
-                            </datalist>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="mattress_cleaning" id="mattress_cleaning">
-                            <label for="mattress_cleaning">Хим.чиска матрасов</label>
-                            <input id=""mattress_cleanning_size" type="range" min="0" max="3" value="0" list=""mattress_cleanning_marks">    
-                            <datalist id=""mattress_cleanning_marks">
-                                <option value="0" label="0"></option>
-                                <option value="1" label="1"></option>
-                                <option value="2" label="1.5"></option>
-                                <option value="3" label="2"></option>
-                            </datalist>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="wash_window" id="wash_window">
-                            <label for="wash_window">Мытье окон</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="wash_up" id="wash_up">
-                            <label for="wash_up">Мытье посуды</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="odor_removal" id="odor_removal">
-                            <label for="odor_removal">Удаление запахов</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="ironing" id="ironing">
-                            <label for="ironing">Глажка</label>
-                        </div>
-                        <div>
-                            <input class="button" type="submit" value="Заказать уборку!">
+                        <div class="form__col">
+                            <span>Тип уборки:</span>
+                            {% for c in clean_list %}
+                                {% if c['group'] == 'clean_type' %}
+                                <div>
+                                    <input type="radio" name="clean_type" id="{{c['name']}}" value="{{c['name']}}">
+                                    <label for="{{c['name']}}">{{c['title']}}({{c['cost']}} тг. за кв.м.)</label>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>    
+                    <div class="form__row">
+                        <div class="form__col">
+                            <span>Общая площадь помещения (кв.м.):</span>
+                            {% for c in  clean_list %}
+                                {% if c['group'] == 'clean_type' %}
+                                <div class="form__row" id="{{c['name']}}_range_box">
+                                    <span id="{{c['name']}}_value">0</span>
+                                    <input 
+                                        id="{{c['name']}}_range" 
+                                        type="range" 
+                                        min="{{c['range_min']}}" 
+                                        max="{{c['range_max']}}" 
+                                        value="0" 
+                                        list="{{c['name']}}_marks">    
+                                    <datalist id="{{c['name']}}_marks">
+                                        {% for v in c['range'] %}
+                                        <option 
+                                            value="{{v[0]}}" 
+                                            label="{{v[1]}}">
+                                        </option>
+                                        {% endfor%}
+                                    </datalist>
+                                </div>
+                                {% endif %}    
+                            {% endfor %}
+                        </div>
+                    </div>    
+                    <div class="form__row">
+                        <div class="form__col">
+                            <span>Дополнительные услуги:</span>
+                            {% for c in  clean_list %}
+                                {% if c['group'] == 'cleanning' %}
+                                <div>
+                                    <input type="checkbox" name="{{c['name']}}" id="{{c['name']}}" value="{{c['name']}}">
+                                    <label for="{{c['name']}}">{{c['title']}}({{c['cost']}} тг.)</label>
+                                </div>
+                                {% endif %}
+                                {% if c['group'] == 'cleanning' and c['range'] %}
+                                <div id="{{c['name']}}_range_box">
+                                    <span id="{{c['name']}}_value">0</span>
+                                    <input 
+                                        id="{{c['name']}}_range" 
+                                        type="range" 
+                                        min="{{c['range_min']}}" 
+                                        max="{{c['range_max']}}" 
+                                        value="0" 
+                                        list="{{c['name']}}_marks">    
+                                    <datalist id="{{c['name']}}_marks">
+                                        {% for v in c['range'] %}
+                                        <option 
+                                            value="{{v[0]}}" 
+                                            label="{{v[1]}}">
+                                        </option>
+                                        {% endfor%}
+                                    </datalist>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>    
+                    <div class="form__row">
+                        <div class="form__col">
+                            <span>Калькулятор считает приблизительную стоимость.</span>
+                            <span>Просьба уточнять точную стоимость по номеру: {{contacts[0]}}, {{contacts[1]}}</span>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <span>Приблизительная стоимость:<strong id="cost"></strong></span>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__col">
+                            <input class="button" type="submit" value="Отправить">
+                        </div>
+                    </div>
                 </form>
             </section>
             <section class="service__section">
@@ -181,6 +165,10 @@
             </section>
         </main>
     </div>
+    <script>
+        let clean_list = JSON.parse('{{ clean_list | tojson }}');
+    </script>
     <script src="{{url_for('static', filename='js/range.js')}}"></script>
+    <script src="{{url_for('static', filename='js/mask.js')}}"></script>
 </body>
 </html>
